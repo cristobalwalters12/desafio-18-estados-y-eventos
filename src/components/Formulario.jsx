@@ -19,6 +19,14 @@ function Formulario() {
     ) {
       setAlertMessage("Todos los campos son obligatorios!");
       setAlertVariant("danger");
+    } else if (password !== confirmpassword) {
+      setAlertMessage("Las contraseñas no coinciden");
+      setAlertVariant("warning");
+    } else if (!/^[^\s@]+@[^\s@]+(\.com|\.cl)$/.test(email)) {
+      setAlertMessage(
+        "Por favor, introduce un correo electrónico válido que termine en .com o .cl"
+      );
+      setAlertVariant("warning");
     } else {
       setAlertMessage("Registro exitoso");
       setAlertVariant("success");
