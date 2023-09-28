@@ -1,14 +1,11 @@
 import React, { useState } from "react";
 import { Form, FormControl, FormGroup, Button } from "react-bootstrap";
-import Alert from "./Alert";
-function Formulario() {
+
+function Formulario({ mostrarMensaje }) {
   const [nombre, setNombre] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmpassword, setConfirmPassword] = useState("");
-  const [alertMessage, setAlertMessage] = useState("");
-  const [alertVariant, setAlertVariant] = useState("");
-
   const validarInputs = (e) => {
     e.preventDefault();
     if (
@@ -17,19 +14,30 @@ function Formulario() {
       password === "" ||
       confirmpassword === ""
     ) {
-      setAlertMessage("Todos los campos son obligatorios!");
-      setAlertVariant("danger");
+      mostrarMensaje({
+        variant: "danger",
+        message: "Todos los campos son obligatorios!",
+      });
     } else if (password !== confirmpassword) {
-      setAlertMessage("Las contraseñas no coinciden");
-      setAlertVariant("warning");
+      mostrarMensaje({
+        variant: "warning",
+        message: "Las contraseñas no coinciden",
+      });
     } else if (!/^[^\s@]+@[^\s@]+(\.com|\.cl)$/.test(email)) {
-      setAlertMessage(
-        "Por favor, introduce un correo electrónico válido que termine en .com o .cl"
-      );
-      setAlertVariant("warning");
+      mostrarMensaje({
+        variant: "warning",
+        message:
+          "Por favor, introduce un correo electrónico válido que termine en .com o .cl",
+      });
     } else {
-      setAlertMessage("Registro exitoso");
-      setAlertVariant("success");
+      setNombre("");
+      setPassword("");
+      setEmail("");
+      setConfirmPassword("");
+      mostrarMensaje({
+        variant: "success",
+        message: "Registro exitoso",
+      });
     }
   };
   return (
@@ -65,7 +73,6 @@ function Formulario() {
         <Button type="submit" className="mt-3 w-100" variant="success">
           Registrarse
         </Button>
-        {alertMessage && <Alert text={alertMessage} variant={alertVariant} />}
       </FormGroup>
     </Form>
   );

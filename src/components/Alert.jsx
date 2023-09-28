@@ -1,9 +1,9 @@
 import { Alert as BootstrapAlert } from "react-bootstrap";
 
-function Alert(props) {
+function Alert({ variant, text }) {
   return (
     <div className="mt-3">
-      <BootstrapAlert variant={props.variant}>{props.text}</BootstrapAlert>
+      <BootstrapAlert variant={variant}>{text}</BootstrapAlert>
     </div>
   );
 }
