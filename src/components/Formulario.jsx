@@ -33,7 +33,7 @@ function Formulario() {
           placeholder="Enter name"
           onChange={(e) => setNombre(e.target.value)}
           value={nombre}
-          className="mb-3"
+          className="mb-3 mt-3"
         />
         <FormControl
           type="email"
